@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+th:replace="base::layout(~{::section})">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <!-- Mobile Web-app fullscreen -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <!-- Meta tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="favicon.ico">
+
+    <!--Title-->
+    <title>mymensingh_division</title>
+
+    <!--CSS styles-->
+    <link rel="stylesheet" media="all" href="css/bootstrap.css" />
+    <link rel="stylesheet" media="all" href="css/animate.css" />
+    <link rel="stylesheet" media="all" href="css/font-awesome.css" />
+    <link rel="stylesheet" media="all" href="css/furniture-icons.css" />
+    <link rel="stylesheet" media="all" href="css/linear-icons.css" />
+    <link rel="stylesheet" media="all" href="css/magnific-popup.css" />
+    <link rel="stylesheet" media="all" href="css/owl.carousel.css" />
+    <link rel="stylesheet" media="all" href="css/ion-range-slider.css" />
+    <link rel="stylesheet" media="all" href="css/theme.css" />
+
+    <!--Google fonts-->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,500,600&amp;subset=latin-ext" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    <style>
+        .linear .icon {
+            font-size: 50px;
+        }
+
+        .linear .icon, .linear .mls {
+            display: block;
+            text-align: center;
+        }
+
+        hr {
+            border-color: #ffa400;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <div class="page-loader"></div>
+
+    <div class="wrapper">
+
+        <!--Use class "navbar-fixed" or "navbar-default" -->
+        <!--If you use "navbar-fixed" it will be sticky menu on scroll (only for large screens)-->
+
+        <!-- ======================== Navigation ======================== -->
+
+       
+        <!-- ================== Main header ================== -->
+
+        <section class="main-header" style="background-image:url(assets/images/gallery-1.jpg)">
+            <header>
+                <div class="container">
+                    <h1 class="h2 title">Mymensingh</h1>
+                    <ol class="breadcrumb breadcrumb-inverted">
+                        <li><a href="#"><span class="icon icon-home"></span></a></li>
+                        <li class="active">Mymensingh</li>
+                    </ol>
+                </div>
+            </header>
+        </section>
+
+        <!-- ================== Shorcodes ================== -->
+
+        <section class="shortcodes" >
+            <div class="container">
+
+                <div class="row">
+
+                    <div class="col-md-3 visible-md visible-lg">
+                        <div data-spy="affix" data-offset-top="280">
+                           <ul class="list-group" th:each="data:${data}">
+                                <li class="list-group-item"><a th:href="@{/district/{isoCode}(isoCode=${data.isoCode})}"> <h3 th:text="${data.name}" /></a></li>     
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-md-9">
+
+                        
+                        <!--======= Furniture Icons -->
+                        <section class="shortcodes" >
+                        <div class="panel panel-default" id="mymensingh">
+                            <div class="panel-heading">Mymensingh</div>
+                            <div class="panel-body">
+                                <div class="row icons-wrapper">
+                                    <div class="col-sm-3 col-xs-6">
+                                        <a href="">
+                                           <a href=""> <figure>
+                                                <i class="f-icon f-icon-sofa"></i>
+                                                <figcaption>Historical Place</figcaption>
+                                            </figure></a>
+                                        </a>
+                                    </div>
+                                    <div class="col-sm-3 col-xs-6">
+                                        <a href="">
+                                            <figure>
+                                                <i class="f-icon f-icon-armchair"></i>
+                                                <figcaption>Traditional Food</figcaption>
+                                            </figure>
+                                        </a>    
+                                    </div>
+                                        
+                                        
+                                    <div class="col-sm-3 col-xs-6">
+                                        <a href="">
+                                            <figure>
+                                                <i class="f-icon f-icon-chair"></i>
+                                                <figcaption>Popular Market</figcaption>
+                                            </figure>
+                                        </a>
+                                    </div>
+                                    <div class="col-sm-3 col-xs-6">
+                                        <a href="">
+                                            <figure>
+                                                <i class="f-icon f-icon-dining-table"></i>
+                                                <figcaption>Super Shop</figcaption>
+                                            </figure>
+                                        </a>
+                                    </div>
+                                    <div class="col-sm-3 col-xs-6">
+                                        <a href="">
+                                            <figure>
+                                                <i class="f-icon f-icon-media-cabinet"></i>
+                                                <figcaption>Hospital</figcaption>
+                                            </figure>
+                                        </a>
+                                    </div>
+                                    <div class="col-sm-3 col-xs-6">
+                                        <a href="">
+                                            <figure>
+                                                <i class="f-icon f-icon-table"></i>
+                                                <figcaption>University</figcaption>
+                                            </figure>
+                                        </a>
+                                    </div>
+                                    <div class="col-sm-3 col-xs-6">
+                                        <a href="">
+                                            <figure>
+                                                <i class="f-icon f-icon-bookcase"></i>
+                                                <figcaption>All Holy Place</figcaption>
+                                            </figure>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </section>
+                        
+                      
+
+                
+        </section>
+        
+        
+       
+
+        <!-- ================== Footer  ================== -->
+
+      
+    </div> <!--/wrapper-->
+
+    <!--JS files-->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/jquery.bootstrap.js"></script>
+    <script src="js/jquery.magnific-popup.js"></script>
+    <script src="js/jquery.owl.carousel.js"></script>
+    <script src="js/jquery.ion.rangeSlider.js"></script>
+    <script src="js/jquery.isotope.pkgd.js"></script>
+    <script src="js/main.js"></script>
+
+    <script type="text/javascript">
+        $(function () {
+
+            // Shorcodes - Scroll to
+            // ----------------------------------------------------------------
+            var $a = $('.list-group a');
+            $a.click(function () {
+                $a.removeClass('active');
+                $(this).addClass('active');
+                $('html, body').animate({
+                    scrollTop: $($(this).attr('href')).offset().top + -80
+                }, 500);
+                return false;
+            });
+
+            // Exapnd glyphs
+            // ----------------------------------------------------------------
+
+            var showGlyphs = $('#glyphs');
+            $('.show-all').click(function () {
+                showGlyphs.toggleClass('expanded');
+
+                if (showGlyphs.hasClass('expanded')) {
+                    $(this).text('Collapse');
+                }
+                else {
+                    $(this).text('Expand');
+
+                }
+            });
+        });
+    </script>
+</body>
+</html>

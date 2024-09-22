@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<div th:replace="/hospitalUserView/base :: head"></div>
+<meta charset="utf-8" />
+
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<title>Smart Visitor Admin Panel</title>
+<meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no'
+	name='viewport' />
+	<link rel="stylesheet" th:href="@{/css/style.css}" />
+	
+<div th:replace="component :: headerLink"></div>
+</head>
+
+<body class="">
+	<div class="wrapper ">
+		<!-- sidebar -->
+		<div th:replace="component :: sidebar"></div>
+		<!-- Endsidebar -->
+		<div class="main-panel">
+			<!-- Navbar -->
+			<div th:replace="component :: header"></div>
+			<!-- End Navbar -->
+
+			<div class="content">
+				<div class="container-fluid">
+					<div class="row">
+
+						<section>
+
+							<div class="card mr-3 ml-3">
+
+								<div class="card-body">
+
+									<h1 class="text-center">Traditional Food information</h1>
+
+
+									<!-- search -->
+
+									<div class="search-container my-3">
+
+
+										<input onkeyup="search()" id="search-input" type="text"
+											class="form-control" placeholder="Search your contacts" />
+
+										<div class="search-result">
+
+											<!--  result goes here -->
+
+
+										</div>
+
+
+
+									</div>
+
+
+
+									<div class="table-responsive">
+										<table class="table table-hover ">
+											<thead class="thead-light ">
+												<tr>
+													<th scope="col">#ID</th>
+													<th scope="col">Name</th>
+													<th scope="col">description</th>
+													<th scope="col">contactInfo</th>
+													<th scope="col">location</th>
+													<th scope="col">cost</th>
+													<th scope="col">websiteLink</th>
+													<th scope="col">Action</th>
+												</tr>
+											</thead>
+											<tbody>
+
+
+												<tr th:each="c : ${traditionalFoodInformation}">
+
+													<th scope="row" th:text="${'SCMUSER'+c.tfId}">1</th>
+
+													<td><img src="" class="my_profile_picture"
+														th:src="@{'/img/'+${c.imageUrl}}" alt="profile photo" /> <span
+														th:text="${c.name}"></span></td>
+
+													<td><span th:text="${c.description}"></span></td>
+
+													<td><span th:text="${c.contactInfo}"></span></td>
+
+													<td><span th:text="${c.location}"></span></td>
+													<td><span th:text="${c.cost}"></span></td>
+
+													<td><a href="#"> <span
+															th:text="${c.websiteLink}"></span>
+
+													</a></td>
+
+
+
+													<td><a href="#" th:onclick="|deleteContact(${c.tfId})|" class="btn btn-danger btn-sm">Delete</a>
+
+
+														<form method="post"
+															th:action="@{'/admin/update-traditionalFoodInformation/'+${c.tfId}}"
+															class="mt-2">
+
+															<button type="submit" class="btn btn-primary btn-sm">Update</button>
+
+														</form></td>
+												</tr>
+
+
+											</tbody>
+										</table>
+
+									</div>
+									<!--  pagination part -->
+
+
+									<nav aria-label="Page navigation example">
+
+										<ul class="pagination">
+
+											<li th:if="${currentPage != 0}" class="page-item"><a
+												th:href="@{'/admin/show_hospitalInfo/'+${currentPage-1}}"
+												class="page-link" href="#">Previous</a></li>
+
+
+
+											<li th:classappend="${currentPage==i-1?'active':''}"
+												th:each="i : ${#numbers.sequence(1,totalPages)}"
+												class="page-item"><a
+												th:href="@{'/admin/show_hospitalInfo/'+${i-1}}" class="page-link"
+												href="#"><span th:text="${i}"></span></a></li>
+
+
+											<li th:if="${currentPage+1 != totalPages}" class="page-item"><a
+												th:href="@{'/admin/show_hospitalInfo/'+${currentPage+1}}"
+												class="page-link" href="#">Next</a></li>
+										</ul>
+									</nav>
+
+
+
+								</div>
+
+							</div>
+
+
+
+						</section>
+
+					</div>
+				</div>
+			</div>
+
+			<!-- footer -->
+			<div th:replace="component :: footer"></div>
+			<!-- EndFooter -->
+		</div>
+	</div>
+	<div class="fixed-plugin">
+		<div class="dropdown show-dropdown">
+			<a href="#" data-toggle="dropdown"> <i class="fa fa-cog fa-2x">
+			</i>
+			</a>
+			<ul class="dropdown-menu">
+				<li class="header-title">Sidebar Filters</li>
+				<li class="adjustments-line"><a href="javascript:void(0)"
+					class="switch-trigger active-color">
+						<div class="badge-colors ml-auto mr-auto">
+							<span class="badge filter badge-purple" data-color="purple"></span>
+							<span class="badge filter badge-azure" data-color="azure"></span>
+							<span class="badge filter badge-green" data-color="green"></span>
+							<span class="badge filter badge-warning" data-color="orange"></span>
+							<span class="badge filter badge-danger" data-color="danger"></span>
+							<span class="badge filter badge-rose active" data-color="rose"></span>
+						</div>
+						<div class="clearfix"></div>
+				</a></li>
+				<li class="header-title">Sidebar Background</li>
+				<li class="adjustments-line"><a href="javascript:void(0)"
+					class="switch-trigger background-color">
+						<div class="ml-auto mr-auto">
+							<span class="badge filter badge-black active"
+								data-background-color="black"></span> <span
+								class="badge filter badge-white" data-background-color="white"></span>
+							<span class="badge filter badge-red" data-background-color="red"></span>
+						</div>
+						<div class="clearfix"></div>
+				</a></li>
+				<li class="adjustments-line"><a href="javascript:void(0)"
+					class="switch-trigger">
+						<p>Sidebar Mini</p> <label class="ml-auto">
+							<div class="togglebutton switch-sidebar-mini">
+								<label> <input type="checkbox"> <span
+									class="toggle"></span>
+								</label>
+							</div>
+					</label>
+						<div class="clearfix"></div>
+				</a></li>
+				<li class="adjustments-line"><a href="javascript:void(0)"
+					class="switch-trigger">
+						<p>Sidebar Images</p> <label class="switch-mini ml-auto">
+							<div class="togglebutton switch-sidebar-image">
+								<label> <input type="checkbox" checked=""> <span
+									class="toggle"></span>
+								</label>
+							</div>
+					</label>
+						<div class="clearfix"></div>
+				</a></li>
+				<li class="header-title">Images</li>
+				<li class="active"><a class="img-holder switch-trigger"
+					href="javascript:void(0)"> <img
+						src="../assets/img/sidebar-1.jpg" alt="">
+				</a></li>
+				<li><a class="img-holder switch-trigger"
+					href="javascript:void(0)"> <img
+						src="../assets/img/sidebar-2.jpg" alt="">
+				</a></li>
+				<li><a class="img-holder switch-trigger"
+					href="javascript:void(0)"> <img
+						src="../assets/img/sidebar-3.jpg" alt="">
+				</a></li>
+				<li><a class="img-holder switch-trigger"
+					href="javascript:void(0)"> <img
+						src="../assets/img/sidebar-4.jpg" alt="">
+				</a></li>
+				<li class="button-container"><a
+					href="https://www.creative-tim.com/product/material-dashboard-pro"
+					target="_blank" class="btn btn-rose btn-block btn-fill">Buy Now</a>
+					<a
+					href="https://demos.creative-tim.com/material-dashboard-pro/docs/2.1/getting-started/introduction.html"
+					target="_blank" class="btn btn-default btn-block">
+						Documentation </a> <a
+					href="https://www.creative-tim.com/product/material-dashboard"
+					target="_blank" class="btn btn-info btn-block"> Get Free Demo!
+				</a></li>
+				<li class="button-container github-star"><a
+					class="github-button"
+					href="https://github.com/creativetimofficial/ct-material-dashboard-pro"
+					data-icon="octicon-star" data-size="large" data-show-count="true"
+					aria-label="Star ntkme/github-buttons on GitHub">Star</a></li>
+				<li class="header-title">Thank you for 95 shares!</li>
+				<li class="button-container text-center">
+					<button id="twitter" class="btn btn-round btn-twitter">
+						<i class="fa fa-twitter"></i> &middot; 45
+					</button>
+					<button id="facebook" class="btn btn-round btn-facebook">
+						<i class="fa fa-facebook-f"></i> &middot; 50
+					</button> <br> <br>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<!--   Core JS Files   -->
+	<section>
+	<script
+		src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+		integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+		crossorigin="anonymous"></script>
+	<script
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+		integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+		crossorigin="anonymous"></script>
+
+		<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+		<script>
+
+		function deleteContact(cid)
+		{
+
+			swal({
+				  title: "Are you sure?",
+				  text: "you want to delete this contact..",
+				  icon: "warning",
+				  buttons: true,
+				  dangerMode: true,
+				})
+				.then((willDelete) => {
+				  if (willDelete) {
+
+
+					  window.location="/admin/delete-traditionalFoodInformation/"+cid;
+
+				  } else {
+				    swal("Your contact is safe !!");
+				  }
+				});
+
+		}
+
+
+		</script>
+		<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+		<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+		<script th:src="@{/js/script.js}"></script>
+	<script th:src="@{/js/script.js}"></script>
+	<script th:src="@{/js/script.js}"></script>
+	<div th:replace="/hospitalUserView/base :: coreJSfile"></div>
+
+	</section>
+	<!-- End of Core JS Files   -->
+</body>
+
+</html>
